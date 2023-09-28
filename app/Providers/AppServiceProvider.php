@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Repositories\GoogleCalendar;
 use Illuminate\Support\ServiceProvider;
+use App\Interfaces\EventRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(EventRepositoryInterface::class, GoogleCalendar::class);
     }
 
     /**
