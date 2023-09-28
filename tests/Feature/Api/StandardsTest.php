@@ -35,8 +35,8 @@ class StandardsTest extends TestCase
     }
 
     // In a real-world project I'd drive out some simple assurances here to make
-    // sure we're adhering to a standard (i.e. JSON API). It'd be extraneous
-    // once the project grows (and likely unreasonable to check all endpoints),
-    // but initially it's a good way to get that logic in-place via TDD and
-    // ensure it has test coverage.
+    // sure we're adhering to a standard (i.e. JSON API), mostly via jsonStructure
+    // assertions. It'd be extraneous once the project grows (and likely 
+    // unreasonable to check all endpoints), but initially it's a good way to 
+    // get that logic in-place via TDD and ensure it has test coverage.
 }
