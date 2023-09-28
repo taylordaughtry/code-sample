@@ -61,6 +61,13 @@ class User extends Authenticatable
         $events = app(EventRepositoryInterface::class)->byUserId($this->id);
 
         return $period
+            ->filter(function ($dateTime) {
+                // In the real world there would likely be much more business logic
+                // here around when a given Host is available—PTO, for example. Given
+                // that, it's possible this could be abstracted further. (I tend towards
+                // a YAGNI/KISS approach where possible.)
+                return in_array($dateTime->hour, range(8, 19));
+            })
             ->filter(function ($dateTime) use ($events) {
                 return ! $events->contains(fn ($event) => $event->equalTo($dateTime));
             });

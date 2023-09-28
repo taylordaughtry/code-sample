@@ -40,4 +40,16 @@ class UserTest extends TestCase
 
         $this->assertTrue($availability->contains(CarbonImmutable::now()->startOfHour()->addHours(1)));
     }
+
+    /** @test */
+    public function openings_are_only_available_during_working_hours(): void
+    {
+        $user = User::factory()->create();
+
+        $availability = $user->availability();
+
+        $this->assertFalse($availability->contains(CarbonImmutable::now()->hour(7)->startOfHour()));
+
+        $this->assertTrue($availability->contains(CarbonImmutable::now()->hour(17)->startOfHour()));
+    }
 }
